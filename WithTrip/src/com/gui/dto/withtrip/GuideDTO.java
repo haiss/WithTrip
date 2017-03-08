@@ -3,14 +3,14 @@ package com.gui.dto.withtrip;
 public class GuideDTO {
 	
 	private String name, pw, title, country, city, language, content;
-	private int cost;
+	private int cost,id;
 	
 	
 	public GuideDTO() {
 		super();
 	}
 	
-	public GuideDTO(String name, String pw, String title, String country, String city, String language, String content, int cost) {
+	public GuideDTO(String name, String pw, String title, String country, String city, String language, String content, int cost, int id) {
 		this.name = name;
 		this.pw = pw;
 		this.title = title;
@@ -85,6 +85,13 @@ public class GuideDTO {
 		this.cost = cost;
 	}
 	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 	
 	
 }

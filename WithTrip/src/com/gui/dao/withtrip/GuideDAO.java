@@ -92,6 +92,7 @@ public class GuideDAO {
 			
 			while (rs.next()) {
 				
+				
 				String name = rs.getString("name");
 				String pw = rs.getString("pw");
 				String title = rs.getString("title");
@@ -100,8 +101,9 @@ public class GuideDAO {
 				String language = rs.getString("language");
 				String content = rs.getString("content");
 				int cost = rs.getInt("cost");
+				int id = rs.getInt("id");
 				
-				GuideDTO dto = new GuideDTO(name, pw, title, country, city, language, content, cost);
+				GuideDTO dto = new GuideDTO(name, pw, title, country, city, language, content, cost, id);
 				dtos.add(dto);
 			}
 			

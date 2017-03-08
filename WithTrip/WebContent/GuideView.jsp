@@ -18,10 +18,11 @@ table {
 <body>
 <h1>검색된 여행지</h1>
 <c:forEach items="${GuideList}" var="dto">
-<table style="width:60%">
+
+ <table style="width:60%">
   <tr>
     <td style="width:80%">${dto.city}. ${dto.country}</td>
-    <td></td> 
+ 
     
   </tr>
   
@@ -36,6 +37,7 @@ table {
     <td>${dto.cost}원/day</td>
   </tr>
 </table>
+
 </br>
 </c:forEach>
 </body>
