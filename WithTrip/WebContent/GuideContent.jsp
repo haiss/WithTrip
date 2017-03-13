@@ -15,37 +15,34 @@
 			
 			<tr>
 				<td> 제목 </td>
-				<td> <input type="text" name="title" size = "50"> </td>
+				<td> ${ContentView.title} </td>
 			</tr>
 			
 			<tr>
 				<td> 이름 </td>
-				<td>  </td>
+				<td> ${ContentView.name} </td>
 			</tr>
 			
 			<tr>
 				<td> 지역 </td>
-				<td>  </td>
+				<td> ${ContentView.city}. ${ContentView.country} </td>
 			</tr>
 			
 			<tr>
 				<td> 가능언어 </td>
-				<td>  </td>
+				<td>  ${ContentView.language}</td>
 			</tr>
 			
 			<tr>
 				<td> 가격 </td>
-				<td>원/day </td>
+				<td>${ContentView.cost}원/day </td>
 			</tr>
 			
 			<tr>
 				<td> 내용 </td>
-				<td> </td> 
+				<td> ${ContentView.content}</td> 
 			</tr>
-			<tr>
-				<td colspan="2"> <input type="submit" value="수정"> &nbsp;&nbsp; <a href="list.do">목록보기</a> &nbsp;&nbsp; <a href="delete.do?bId=${content_view.bId}">삭제</a> &nbsp;&nbsp; <a href="reply_view.do?bId=${content_view.bId}">답변</a></td>
-			</tr>
-		</form>
+			
 	</table>
 	
 </body>

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.bcommand.withtrip.BCommand;
 import com.mem.command.withtrip.JoinCommand;
 import com.mem.command.withtrip.LoginCommand;
+import com.mem.command.withtrip.MemModifyCommand;
 
 /**
  * Servlet implementation class MemberFcontroller
@@ -63,8 +64,10 @@ public class MemberFcontroller extends HttpServlet {
 			command = new LoginCommand();
 			command.execute(request, response);
 			viewpage = "index.jsp";
-		//}else if(){
-			
+		}else if(com.equals("/MemModify.mem")){
+			command = new MemModifyCommand();
+			command.execute(request, response);
+			viewpage = "MemModify.jsp";
 		}
 		
 		

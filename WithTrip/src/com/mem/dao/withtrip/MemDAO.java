@@ -53,7 +53,7 @@ public class MemDAO {
 	
 	public void Join(String email, String pw, String name, String country, String city, String sex, String[] hobby){
 		connect();
-		System.out.println("In Join");
+		System.out.println("Enter - MemJoin");
 		int rs;
 		
 		
@@ -85,7 +85,7 @@ public class MemDAO {
 		
 	public MemDTO Login(String email, String pw){
 		connect();
-		System.out.println("in Login");
+		System.out.println("Enter - MemLogin");
 		
 		MemDTO dto = new MemDTO();
 		
@@ -116,5 +116,39 @@ public class MemDAO {
 		return dto;
 	}//Login
 	
+	public MemDTO MemModify(String email, String pw){
+		connect();
+		System.out.println("Enter - MemModify");
+		
+		MemDTO dto = new MemDTO();
+		
+		String query="select * from member where email=? and pw=?";
+		
+		try {
+			ps = con.prepareStatement(query);
+			
+			ps.setString(1, email);
+			ps.setString(2, pw);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			rs.next();
+			
+			dto.setEmail(rs.getString("email"));
+			dto.setPw(rs.getString("pw"));
+			dto.setName(rs.getString("name"));
+			dto.setName(rs.getString("country"));
+			dto.setName(rs.getString("city"));
+			dto.setName(rs.getString("sex"));
+			dto.setHobby(rs.getString("hobby"));
+			rs.close();
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			disconnect();
+		}
+		return null;
+	}
 	
 }//memdao.class

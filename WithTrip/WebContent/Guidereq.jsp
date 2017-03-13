@@ -10,19 +10,23 @@
 <script src="//cdn.ckeditor.com/4.6.2/full/ckeditor.js"></script>
 </head>
 <body>
-	<table width="1000" cellpadding="0" cellspacing="0" border="1">
-		<form action="write.gu" method="post">
+	<form action="write.gu" method="post" enctype="multipart/form-data">
+	<table width="80%" cellpadding="0" cellspacing="0" border="1">
 			<tr>
 				<td> 이름 </td>
 				<td> <input type="text" name="name" size = "50"> </td>
 			</tr>
 			<tr>
-				<td> 패스워드 </td>
+				<td style="width:18%"> 패스워드 </td>
 				<td> <input type="password" name="pw" size = "50"> </td>
 			</tr>
 			<tr>
 				<td> 제목 </td>
 				<td> <input type="text" name="title" size = "50"> </td>
+			</tr>
+			<tr>
+				<td> 리스트 이미지 </td>
+				<td> <input type="file" name="listimg"> </td>
 			</tr>
 			<tr>
 				<td> 지역 </td>
@@ -46,10 +50,10 @@
 					<script>CKEDITOR.replace('editor1');</script>
 				</td> 
 			</tr>
-			<tr >
+			<tr>
 				<td colspan="2"> <input type="submit" value="신청하기"> &nbsp;&nbsp; <a href="list.do"><input type="button" value="신청취소"></a></td>
 			</tr>
-		</form>
 	</table>
+		</form>
 </body>
 </html>

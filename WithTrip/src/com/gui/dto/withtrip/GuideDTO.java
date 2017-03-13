@@ -2,12 +2,25 @@ package com.gui.dto.withtrip;
 
 public class GuideDTO {
 	
-	private String name, pw, title, country, city, language, content;
+	private String name, pw, title, country, city, language, content, listimg;
 	private int cost,id;
 	
 	
 	public GuideDTO() {
 		super();
+	}
+	
+	public GuideDTO(String name, String pw, String title, String country, String city, String language, String content, int cost, int id, String listimg) {
+		this.name = name;
+		this.pw = pw;
+		this.title = title;
+		this.country = country;
+		this.city = city;
+		this.language = language;
+		this.content = content;
+		this.cost = cost;
+		this.id = id;
+		this.listimg = listimg;
 	}
 	
 	public GuideDTO(String name, String pw, String title, String country, String city, String language, String content, int cost, int id) {
@@ -19,6 +32,16 @@ public class GuideDTO {
 		this.language = language;
 		this.content = content;
 		this.cost = cost;
+		this.id = id;
+		this.listimg = listimg;
+	}
+
+	public String getListimg() {
+		return listimg;
+	}
+
+	public void setListimg(String listimg) {
+		this.listimg = listimg;
 	}
 
 	public String getName() {

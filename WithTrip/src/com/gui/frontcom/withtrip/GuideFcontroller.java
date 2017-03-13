@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bcommand.withtrip.BCommand;
+import com.gui.command.withtrip.GuideContenViewCommand;
 import com.gui.command.withtrip.GuideListCommand;
 import com.gui.command.withtrip.WriteCommand;
 import com.mem.command.withtrip.JoinCommand;
@@ -64,8 +65,10 @@ public class GuideFcontroller extends HttpServlet {
 			command = new GuideListCommand();
 			command.execute(request, response);
 			viewpage="GuideView.jsp";
-
-	
+		}else if (com.equals("/guidecontent.gu")) {
+			command = new GuideContenViewCommand();
+			command.execute(request, response);
+			viewpage="GuideContent.jsp";
 		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewpage);

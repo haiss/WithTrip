@@ -51,14 +51,14 @@ public class GuideDAO {
 		}
 	}//discon
 	
-	public void GuideRequest(String name, String pw, String title, String country, String city, String language, int cost, String content) {
+	public void GuideRequest(String name, String pw, String title, String country, String city, String language, int cost, String content, String listimg) {
 		connect();
 		System.out.println("Enter - GuideRequest");
 		System.out.println("in GuideRequest");
-		
+		System.out.println(listimg);
 		
 		try {
-			String query = "insert into guide (name, pw, title, country, city, language, cost, content) values (?,?,?,?,?,?,?,?)";
+			String query = "insert into guide (name, pw, title, country, city, language, cost, content, listimg) values (?,?,?,?,?,?,?,?,?)";
 			ps = con.prepareStatement(query);
 			ps.setString(1, name);
 			ps.setString(2, pw);
@@ -68,6 +68,7 @@ public class GuideDAO {
 			ps.setString(6, language);
 			ps.setInt(7, cost);
 			ps.setString(8, content);
+			ps.setString(9, listimg);
 			int rs = ps.executeUpdate();
 			
 			
@@ -91,8 +92,7 @@ public class GuideDAO {
 			rs = ps.executeQuery();
 			
 			while (rs.next()) {
-				
-				
+							
 				String name = rs.getString("name");
 				String pw = rs.getString("pw");
 				String title = rs.getString("title");
@@ -100,10 +100,12 @@ public class GuideDAO {
 				String city = rs.getString("city");
 				String language = rs.getString("language");
 				String content = rs.getString("content");
+				String listimg = rs.getString("listimg");
 				int cost = rs.getInt("cost");
 				int id = rs.getInt("id");
 				
-				GuideDTO dto = new GuideDTO(name, pw, title, country, city, language, content, cost, id);
+				System.out.println(id);
+				GuideDTO dto = new GuideDTO(name, pw, title, country, city, language, content, cost, id,listimg);
 				dtos.add(dto);
 			}
 			
@@ -116,7 +118,7 @@ public class GuideDAO {
 		return dtos;	
 	}//GuideView-method
 	
-	public GuideDTO GuideContent(){
+	public GuideDTO GuideContent(String id){
 		
 		GuideDTO dto = null;
 		ResultSet rs = null;
@@ -125,12 +127,36 @@ public class GuideDAO {
 		System.out.println("In GuideContent");
 		
 		try {
-			String query = "select * from guide where "
+			String query = "select * from guide where id=?";
+			ps = con.prepareStatement(query);
+			ps.setInt(1, Integer.parseInt(id));
+			rs = ps.executeQuery();
+			
+			if (rs.next()) {
+				String name = rs.getString("name");
+				String pw = rs.getString("pw");
+				String title = rs.getString("title");
+				String country = rs.getString("country");
+				String city = rs.getString("city");
+				String language = rs.getString("language");
+				String content = rs.getString("content");
+				int cost = rs.getInt("cost");
+				int sid = rs.getInt("id");
+				
+				dto = new GuideDTO(name, pw, title, country, city, language, content, cost, sid);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			try {
+				rs.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			disconnect();
 		}
-		return null;
-	}
+		return dto;
+	}//GuideContent
 	
 	
 }//GuideDAO
