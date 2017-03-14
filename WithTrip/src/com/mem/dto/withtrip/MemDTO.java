@@ -2,7 +2,8 @@ package com.mem.dto.withtrip;
 
 public class MemDTO {
  
-	private String email,pw,name,country,city,sex,hobby;
+	private String email,pw,name,country,city,sex;
+	private String hobby;
  
 	public MemDTO() {
 		super();

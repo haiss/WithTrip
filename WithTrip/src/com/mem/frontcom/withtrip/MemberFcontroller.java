@@ -64,10 +64,10 @@ public class MemberFcontroller extends HttpServlet {
 			command = new LoginCommand();
 			command.execute(request, response);
 			viewpage = "index.jsp";
-		}else if(com.equals("/MemModify.mem")){
+		}else if(com.equals("/MemModifyOK.mem")){
 			command = new MemModifyCommand();
 			command.execute(request, response);
-			viewpage = "MemModify.jsp";
+			viewpage = "index.jsp";
 		}
 		
 		

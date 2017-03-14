@@ -51,16 +51,25 @@ public class MemDAO {
 		}
 	}//discon
 	
+	//회원가입
 	public void Join(String email, String pw, String name, String country, String city, String sex, String[] hobby){
 		connect();
 		System.out.println("Enter - MemJoin");
 		int rs;
 		
-		
-		String hb="";
-		for (int i = 0; i < hobby.length; i++) {
-			hb = hb+hobby[i]+";";
+		char[] hb = {'0','0','0','0'};
+		String lists[] = {"movie","game","book","sport"};
+		for(int i = 0; i < hobby.length ; i++){
+			for (int j = 0; j < lists.length; j++) {
+				if(hobby[i].equals(lists[j]))
+					hb[j]='1';
+			}
 		}
+		
+//		String hb="";
+//		for (int i = 0; i < hobby.length; i++) {
+//			hb = hb+hobby[i]+";";
+//		}
 		
 		try {
 			String query = "insert into member(email, pw, name, country, city, sex, hobby) values(?,?,?,?,?,?,?)";
@@ -71,7 +80,8 @@ public class MemDAO {
 			ps.setString(4, country);
 			ps.setString(5, city);
 			ps.setString(6, sex);
-			ps.setString(7, hb);
+			ps.setString(7, new String(hb));
+			//ps.setString(7, hb);
 			
 			rs = ps.executeUpdate();
 			
@@ -82,7 +92,8 @@ public class MemDAO {
 			}
 			disconnect();
 		}
-		
+	
+	//로그인
 	public MemDTO Login(String email, String pw){
 		connect();
 		System.out.println("Enter - MemLogin");
@@ -104,7 +115,27 @@ public class MemDAO {
 			dto.setEmail(rs.getString("email"));
 			dto.setPw(rs.getString("pw"));
 			dto.setName(rs.getString("name"));
+			dto.setEmail(rs.getString("email"));
+			dto.setPw(rs.getString("pw"));
+			dto.setName(rs.getString("name"));
+			dto.setCountry(rs.getString("country"));
+			dto.setCity(rs.getString("city"));
+			dto.setSex(rs.getString("sex"));
 			dto.setHobby(rs.getString("hobby"));
+			
+			
+			String ex = dto.getHobby();
+			System.out.println(ex);
+			
+			//취미를 배열로 담음
+/*			String hobbys[]=new String[5];
+			String hobby = rs.getString("hobby");
+			for (int i = 0; i < hobbys.length; i++) {
+				hobbys[i] = hobby.substring(i, i+1);
+			}
+			*/
+			//dto.setHobby(hobbys);
+			
 			rs.close();
 
 			
@@ -116,15 +147,42 @@ public class MemDAO {
 		return dto;
 	}//Login
 	
-	public MemDTO MemModify(String email, String pw){
+	//회원정보수정
+	public void MemModify(String email, String pw, String name, String country, String city, String sex, String[] hobby){
 		connect();
 		System.out.println("Enter - MemModify");
 		
-		MemDTO dto = new MemDTO();
+		System.out.println(email+pw);
+	
+		int rs;
 		
-		String query="select * from member where email=? and pw=?";
+		char[] hb = {'0','0','0','0'};
+		String lists[] = {"movie","game","book","sport"};
+		for(int i = 0; i < hobby.length ; i++){
+			for (int j = 0; j < lists.length; j++) {
+				if(hobby[i].equals(lists[j]))
+					hb[j]='1';
+			}
+		}
+		
 		
 		try {
+			String query="update member set pw=?,name=?,country=?,city=?,sex=?,hobby=? where email = ?";
+			
+			ps = con.prepareStatement(query);
+			
+			ps.setString(1, pw);
+			ps.setString(2, name);
+			ps.setString(3, country);
+			ps.setString(4, city);
+			ps.setString(5, sex);
+			ps.setString(6, new String(hb));
+			ps.setString(7, email);
+			//ps.setString(7, hb);
+			
+			rs = ps.executeUpdate();
+			
+			/*
 			ps = con.prepareStatement(query);
 			
 			ps.setString(1, email);
@@ -137,18 +195,20 @@ public class MemDAO {
 			dto.setEmail(rs.getString("email"));
 			dto.setPw(rs.getString("pw"));
 			dto.setName(rs.getString("name"));
-			dto.setName(rs.getString("country"));
-			dto.setName(rs.getString("city"));
-			dto.setName(rs.getString("sex"));
+			dto.setCountry(rs.getString("country"));
+			dto.setCity(rs.getString("city"));
+			dto.setSex(rs.getString("sex"));
 			dto.setHobby(rs.getString("hobby"));
-			rs.close();
+	
+
+			rs.close();*/
 		
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
 			disconnect();
 		}
-		return null;
+	
 	}
 	
 }//memdao.class

@@ -20,10 +20,15 @@ public class LoginCommand implements BCommand{
 		
 		HttpSession httpSession = request.getSession();
 		httpSession.setAttribute("email", dto.getEmail());
-		httpSession.setAttribute("pw", dto.getPw());
 		httpSession.setAttribute("name", dto.getName());
-		
-		System.out.println("User Name = " + httpSession.getAttribute("name"));
+		httpSession.setAttribute("pw", dto.getPw());
+		httpSession.setAttribute("country", dto.getCountry());
+		httpSession.setAttribute("city", dto.getCity());
+		httpSession.setAttribute("sex", dto.getSex());
+		httpSession.setAttribute("hobby", dto.getHobby());
+
+		System.out.println("Login User Name = " + httpSession.getAttribute("name"));
+		System.out.println("Login User hobby = " + httpSession.getAttribute("hobby"));
 		
 		request.setAttribute("LoginOK", dto);
 		

@@ -11,14 +11,21 @@ public class MemModifyCommand implements BCommand{
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
+		
 		String email = request.getParameter("email");
 		String pw = request.getParameter("pw");
+		String name = request.getParameter("name");
+		String country = request.getParameter("country");
+		String city = request.getParameter("city");
+		String sex = request.getParameter("sex");
+		String[] hobby = request.getParameterValues("hobby");
+		
 		System.out.println(email+pw);
 		
 		MemDAO dao = new MemDAO();
-		MemDTO dto = dao.Login(email,pw);
+		dao.MemModify(email, pw, name, country, city, sex, hobby);
 		
-		request.setAttribute("MemModify", dto);
+		///request.setAttribute("MemModify", dto);
 		
 		
 	}

@@ -11,8 +11,7 @@
 <body>
 
 	<% String name = (String)session.getAttribute("name");
-	   String email = (String)session.getAttribute("email");
-	   String pw = (String)session.getAttribute("pw");
+	  
 	%>
 	<%
 	if(name!=null){
@@ -21,7 +20,7 @@
 	
 	<a href="write.gu">가이드작성</a>
 	<a href="guidelist.gu">가이드검색</a>
-	<a href="MemModify.mem?email=${email}&pw=${pw}">회원정보수정</a>
+	<a href="MemModify.jsp">회원정보수정</a>
 	
 	<%}else{
 	%>
