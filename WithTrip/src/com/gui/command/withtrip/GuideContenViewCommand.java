@@ -1,5 +1,8 @@
 package com.gui.command.withtrip;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -10,7 +13,7 @@ import com.gui.dto.withtrip.GuideDTO;
 public class GuideContenViewCommand implements BCommand{
 
 	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response) {
+	public void execute(HttpServletRequest request, HttpServletResponse response){
 		
 		String id = request.getParameter("id");
 //		if (id==null) {
@@ -20,8 +23,7 @@ public class GuideContenViewCommand implements BCommand{
 		
 		GuideDAO dao = new GuideDAO();
 		GuideDTO dto = dao.GuideContent(id);
-		
-		request.setAttribute("ContentView", dto);
+
 	}
 
 }

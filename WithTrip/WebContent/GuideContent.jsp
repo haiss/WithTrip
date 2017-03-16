@@ -30,12 +30,12 @@
 			
 			<tr>
 				<td> 가능언어 </td>
-				<td>  ${ContentView.language}</td>
+				<td> ${ContentView.language}</td>
 			</tr>
 			
 			<tr>
 				<td> 가격 </td>
-				<td>${ContentView.cost}원/day </td>
+				<td> ${ContentView.cost}원/day </td>
 			</tr>
 			
 			<tr>

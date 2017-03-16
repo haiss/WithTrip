@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.bcommand.withtrip.BCommand;
 import com.gui.command.withtrip.GuideContenViewCommand;
 import com.gui.command.withtrip.GuideListCommand;
+import com.gui.command.withtrip.GuideModifyCommand;
 import com.gui.command.withtrip.WriteCommand;
 import com.mem.command.withtrip.JoinCommand;
 import com.mem.command.withtrip.LoginCommand;
@@ -69,6 +70,12 @@ public class GuideFcontroller extends HttpServlet {
 			command = new GuideContenViewCommand();
 			command.execute(request, response);
 			viewpage="GuideContent.jsp";
+		}else if (com.equals("/guideModify.gu")) {
+			command = new GuideModifyCommand();
+			command.execute(request, response);
+			viewpage="GuideModify.jsp";
+			
+			
 		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewpage);
